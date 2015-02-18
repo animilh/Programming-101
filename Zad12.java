@@ -4,7 +4,7 @@ import java.lang.Math;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Zad1 {
+public class Zad12 {
 
 	// 1) Fill tetrahedron with water - implementation of fill_tetrahedron(int num)
 
