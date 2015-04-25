@@ -9,6 +9,9 @@ class DirectedGraph:
     def __getitem__(self, user):
         return self.network[user]
 
+    def has_node(self, node):
+        return node in self.network
+
     def add_edge(self, node_a, node_b):
 
         if not self.has_node(node_a):
@@ -24,12 +27,10 @@ class DirectedGraph:
         if not self.has_node(node_a):
             self.network[node_a] = []
 
-    def has_node(self, node):
-        return node in self.network
-
     def get_neighbors_for(self, node):
+        if not self.has_node(node):
+            raise KeyError("No such node in DirectedGraph")
         return self.network[node]
-
 
     def path_between(self, start, end, path=[]):
 
@@ -62,23 +63,3 @@ class DirectedGraph:
                 if newpath:
                     return newpath
         return None
-
-def main():
-    dgr = DirectedGraph()
-    dgr.add_edge('A','B')
-    dgr.add_edge('B','C')
-    dgr.add_edge('A','D')
-    dgr.add_edge('C','E')
-    dgr.add_node('V')
-
-    for key in dgr:
-        print("{} : {}").format(key, dgr[key])
-
-    print(dgr.has_node('A'))
-    print(dgr.has_node('V'))
-    print(dgr.get_path_between('A','E'))
-
-
-if __name__ == '__main__':
-    main()
-
