@@ -87,7 +87,7 @@ class PandaSocialNetwork:
         return self.network[panda]
 
 # bfs - algoritym za tyrsene na naj-kratyk pyt w graf bez tegla na rebrata m-u dwe tochki
-# ako ima tegla za naj-kratyk pyt izpolzwame dikstra
+# ako ima tegla za naj-kratyk pyt izpolzwame Dijkstra
     def connection_level(self, panda1, panda2):
         if not (self.has_panda(panda1) and self.has_panda(panda2)):
             return False
@@ -177,35 +177,3 @@ class PandaSocialNetwork:
             for friends in self.data[pandas]:
                 self.network[eval(pandas)].append(eval(friends))
         print ("PandaSocialNetwork loaded successfully from {}".format(path))
-
-
-def main():
-    network = PandaSocialNetwork()
-    ivo = Panda("Ivo", "ivo@pandamail.com", "male")
-    rado = Panda("Rado", "rado@pandamail.com", "male")
-    tony = Panda("Tony", "tony@pandamail.com", "female")
-    deni = Panda("Deni", "deni@pandamail.com", "female")
-    ani = Panda("Ani", "ani@pandamail.com", "female")
-    emil = Panda("Emo", "emo@pandamail.com", "male")
-    tosho = Panda("Tosho", "tosho@pandamail.com", "male")
-    poni = Panda('Pony', 'pony@pandamail.com', 'female')
-
-    for panda in [ivo, rado, tony, deni, ani, emil, tosho]:
-        network.add_panda(panda)
-
-    network.make_friends(ivo, rado)
-    network.make_friends(rado, tony)
-    network.make_friends(tony, deni)
-    network.make_friends(ani, deni)
-    network.make_friends(emil, deni)
-    network.make_friends(tony, ani)
-    network.make_friends(tosho, deni)
-    print (network.has_panda(poni))
-
-#    network.save("/home/burnaski/code/Programming101-3/week3/dump1.txt")
-    network.load("/home/burnaski/code/Programming101-3/week3/dump1.txt")
-
-
-if __name__ == '__main__':
-    main()
-
