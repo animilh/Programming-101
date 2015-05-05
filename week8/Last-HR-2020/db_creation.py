@@ -16,8 +16,8 @@ Courses(id_courses INTEGER PRIMARY KEY, course_name TEXT)
 create_students_to_courses_table = """
 CREATE TABLE IF NOT EXISTS
 Students_to_courses(id_student INTEGER, id_courses INTEGER,
-    FOREIGN KEY (id_student) REFERENCES Students,
-    FOREIGN KEY (id_courses) REFERENCES Courses
+    FOREIGN KEY (id_student) REFERENCES Students(id_student),
+    FOREIGN KEY (id_courses) REFERENCES Courses(id_courses)
     )
 """
 
