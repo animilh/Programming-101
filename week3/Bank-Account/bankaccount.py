@@ -25,8 +25,6 @@ class BankAccount:
         self.add_history(History.INT_CHECK.format(self.__balance, self.__curruncy))
         return self.__balance
 
-
-    #"Ana's bank account, balance 150 BGN"
     def __str__(self):
         return "{}'s bank account, balance {} {}".format(self.__name, self.__balance, self.__curruncy)
 
@@ -80,8 +78,6 @@ class BankAccount:
         self.add_history(History.BALANCE_CHECK.format(self.__balance, self.__curruncy))
         return self.__balance
 
-    # def set_balance(self, amount):
-    #     return self.__balance + amount
 
     def holder(self):
         return self.__name
@@ -94,23 +90,3 @@ class BankAccount:
 
     def add_history(self, event):
         return self.__history.append(event)
-
-def main():
-    ana = BankAccount('Ana', 500, 'BGN')
-    ana.deposite(10)
-    print (ana.balance())
-    print(ana.history())
-    emo = BankAccount('Emil', 0, 'BGN')
-    ana.deposite(100)
-    print(ana.balance())
-    ana.withdraw(140)
-    print(str(ana))
-    print(int(ana))
-    ana.transfer(emo, 450)
-    print('Ana balance %d' % ana.balance())
-    print('Emo balance %d' % emo.balance())
-    print(ana.history())
-
-if __name__ == '__main__':
-    main()
-
