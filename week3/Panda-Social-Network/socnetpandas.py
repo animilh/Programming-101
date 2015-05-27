@@ -3,7 +3,9 @@ import json
 
 
 class Panda:
+
     GENDERS = ['male','female']
+
     def __init__(self, name, email, gender):
         self.__name = str(name)
 
@@ -11,7 +13,7 @@ class Panda:
             raise ValueError("Invalid email")
         self.__email = email
 
-        if gender not in self.GENDERS:
+        if gender not in Panda.GENDERS:
             raise ValueError ("The gener of panda is invalid")
         self.__gender = gender
 
@@ -86,39 +88,27 @@ class PandaSocialNetwork:
             return False
         return self.network[panda]
 
-# bfs - algoritym za tyrsene na naj-kratyk pyt w graf bez tegla na rebrata m-u dwe tochki
-# ako ima tegla za naj-kratyk pyt izpolzwame Dijkstra
     def connection_level(self, panda1, panda2):
         if not (self.has_panda(panda1) and self.has_panda(panda2)):
             return False
 
         queue = [[panda1]]
         visited = set()
-        # current_panda = Panda('','current@abv.bg',"male")
 
         while len(queue) != 0:
-            #Gets the first path in the queue
             path = queue.pop(0)
-#            print (path)
 
-            #Gets the last node in the path
             current_panda = path[-1]
-#            print (current_panda)
 
-            #Check if we have found panda2
-#            if isinstance(current_panda, Panda):
             if current_panda == panda2:
                 return len(path) - 1
-            #Check if the node is already visited      if not (self.has_panda(panda1) and self.has_panda(panda2)):
 
             if current_panda not in visited:
-                # enumerate all adjacent nodes, construct a new path and push it into the queue
                 for neighbour in self.network.get(current_panda,[]):
                     new_path = list(path)
                     new_path.append(neighbour)
                     queue.append(new_path)
 
-                #Mark the current node as visited
                 visited.add(current_panda)
 
         if panda2 not in visited:
