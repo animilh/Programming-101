@@ -1,10 +1,10 @@
 class Song:
 
     def __init__(self, title, artist, album, length):
-        self.__title = title
-        self.__artist = artist
-        self.__album = album
-        self.__length = length
+        self.__title = str(title)
+        self.__artist = str(artist)
+        self.__album = str(album)
+        self.__length = str(length)
 
     def title(self):
         return self.__title
@@ -19,7 +19,7 @@ class Song:
         return self.__length
 
     def __str__(self):
-        return "{artist} - {name} from {album} -{length}"\
+        return "{} - {} from {} - {}"\
             .format(self.artist(), self.title(), self.album(), self.length())
 
     def __eq__(self, other):
@@ -33,28 +33,30 @@ class Song:
 
 
     def length_song(self, seconds=False, minutes=False, hours=False):
-        lengthlist = [int(part.strip()) for part in self.length().split(":")]
-        if len(lengthlist) == 3:
-            if seconds:
-                return lengthlist[0] * 60 * 60 + lengthlist[1] * 60 + \
-                    lengthlist[2]
-            if minutes:
-                return lengthlist[0] * 60 + lengthlist[1] + \
-                    lengthlist[2] / 60
-            if hours:
-                return lengthlist[0] + lengthlist[1] / 60 + \
-                    lengthlist[2] / 120
+        try:
+            lengthlist = [int(part.strip()) for part in self.length().split(":")]
 
-        if len(lengthlist) == 2:
-            if seconds:
-                return lengthlist[0] * 60 + lengthlist[1]
-            if minutes:
-                return lengthlist[0] + lengthlist[1] / 60
-            if hours:
-                return lengthlist[0] / 60 + lengthlist[1] / 3600
+            if len(lengthlist) == 3:
+                if seconds:
+                    return lengthlist[0] * 60 * 60 + lengthlist[1] * 60 + \
+                        lengthlist[2]
+                if minutes:
+                    return lengthlist[0] * 60 + lengthlist[1] + \
+                        lengthlist[2] / 60
+                if hours:
+                    return lengthlist[0] + lengthlist[1] / 60 + \
+                        lengthlist[2] / 120
 
-            if not seconds and not minutes and not hours:
-                return str(self.length())
+            if len(lengthlist) == 2:
+                if seconds:
+                    return lengthlist[0] * 60 + lengthlist[1]
+                if minutes:
+                    return lengthlist[0] + lengthlist[1] / 60
+                if hours:
+                    return lengthlist[0] / 60 + lengthlist[1] / 3600
 
-        else:
-            raise Exception("Invalid format for song length")
+                if not seconds and not minutes and not hours:
+                    return str(self.length())
+        except ValueError:
+            print("Bad format of song's length : hh:mm:ss or mm:ss")
+            raise

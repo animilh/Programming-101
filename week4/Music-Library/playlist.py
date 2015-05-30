@@ -14,11 +14,20 @@ class Playlist:
         self.__current_song_index = 0
         self.__shuffle_played_songs = set()
 
+    def __str__(self):
+        return self.name + '/' + self.playlist
+
+    def __repr__(self):
+        return self.__str__()
+
 
     def add_song(self, song):
         if song is None:
             raise ValueError("No song to add")
         self.playlist.append(song)
+
+    def has_song(self, song):
+        return song in self.playlist
 
     def remove_song(self, song):
         if song is None:
