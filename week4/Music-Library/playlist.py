@@ -15,10 +15,15 @@ class Playlist:
         self.__shuffle_played_songs = set()
 
     def __str__(self):
-        return self.name + '/' + self.playlist
+        for song in self.playlist:
+            return "{} - {}".format(song.title(), song.length())
 
     def __repr__(self):
         return self.__str__()
+
+    def __iter__(self):
+        return iter(self.playlist)
+
 
 
     def add_song(self, song):

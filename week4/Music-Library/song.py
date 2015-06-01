@@ -31,6 +31,9 @@ class Song:
     def __hash__(self):
         return hash(self.__str__)
 
+    def __iter__(self):
+        return iter(self.__str__())
+
 
     def length_song(self, seconds=False, minutes=False, hours=False):
         try:
