@@ -63,3 +63,8 @@ class DirectedGraph:
                 if newpath:
                     return newpath
         return None
+
+
+    def pprint(self):
+        for node in self.network:
+            print (node, self.network[node])
