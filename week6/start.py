@@ -5,8 +5,10 @@ username = input("Enter GitHub username of a person you are searching for : ")
 level = int(input("Enter the level of the graph : "))
 net = GitHubSocialNetwork()
 net.build_GitHub_social_network(myusername, level)
+
 print("Your network for level {}".format(level))
-print(net.get_network_for(myusername))
+net.network.pprint()
+
 print("Do you follow user with username {}?".format(username))
 if net.do_you_follow(username):
     print("Yes")
@@ -21,4 +23,3 @@ else:
 
 print("How many people from your followers follows you back?")
 print(net.who_follows_you_back())
-
