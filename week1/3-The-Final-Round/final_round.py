@@ -3,13 +3,7 @@ def to_digits(n):
     str_num = str(n)
     for i in range(0, len(str_num)):
         list.append(int(str_num[i]))
-    # for ch in str(n):
-    #     list.append(ch)
-    # a='123'
-    # [x for x in a] -> ['1','2','3']
-    # [int(x) for x in a] -> [1,2,3]
-    # for ch in str(n):
-    # return [int(x) for x in str_num]
+
     return list
 
 
@@ -186,25 +180,23 @@ def magic_square(matrix):
             return False
 
 # check for colons
-    for row in matrix:
+    for i in range(len(matrix)):
         suma_col = 0
-        for col in row:
-            suma_col += matrix[col][row]
+        for row in matrix:
+            suma_col += row[i]
         if suma_col != suma:
             return False
-
+			
 # check for main diagonal
-    main_diag = [matrix[row][row] for row in matrix]
-    for num in main_diag:
-        if num != suma:
-            return False
+    main_diag = sum([matrix[i][i] for i in range(len(matrix))])
+    if main_diag != suma:
+        return False
 
 # check for second diagonal
-    sec_diag = [matrix[row][col] for row in matrix for col in row
-    if row + col == len(matrix[0])-1]
-    for num in sec_diag:
-        if num != suma:
-            return False
+    matrix = [row for row in reversed(matrix)]
+    sec_diag = sum([matrix[i][i] for i in range(len(matrix))])
+    if sec_diag != suma:
+        return False
 
     return True
 
@@ -220,19 +212,3 @@ def friday_years(start, end):
         elif year % 4 !=0 and date_year.weekday() == 4:
             count += 1
     return count
-
-
-def main():
-    print friday_years(1000, 2000)
-    print friday_years(1753, 2000)
-    print friday_years(1990, 2015)
-    print (magic_square([[23, 28, 21], [22, 24, 26], [27, 20, 25]]))
-    print (magic_square([[16, 23, 17], [78, 32, 21], [17, 16, 15]]))
-#   print(is_credit_card_valid(79927398715))
-#    groupby(data, keyfunc)
-#    print (count_prime(1000,5))
-
-if __name__ == '__main__':
-    main()
-
-#zshrc
